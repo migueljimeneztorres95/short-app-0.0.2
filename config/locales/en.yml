@@ -30,4 +30,13 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    messages:
+      invalid_full_url: "Full url is not a valid url"
+  activerecord:
+    errors:
+      models:
+        short_url:
+          attributes:
+            full_url:
+              invalid_url: "is not a valid url"

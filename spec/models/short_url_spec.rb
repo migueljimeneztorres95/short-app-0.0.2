@@ -35,7 +35,7 @@ RSpec.describe ShortUrl, type: :model do
 
   describe "existing short_url instance" do
 
-    let(:short_url) { ShortUrl.create(full_url: "https://www.beenverified.com/faq/") }
+    let!(:short_url) { ShortUrl.create(full_url: "https://www.beenverified.com/faq/") }
 
     it "has a short code" do
       # Just validate the short_code class bc specs run in random order
@@ -54,17 +54,22 @@ RSpec.describe ShortUrl, type: :model do
 
     context "with a higher id" do
 
+      let!(:short_url_2) { ShortUrl.new(full_url: "https://www.beenverified.com/faq/") }
+      let!(:short_url_3) { ShortUrl.new(full_url: "https://www.beenverified.com/faq/") }
+
       # Instead of creating a bunch of ShortUrls to get a higher
       # id, let's just manipulate the one we have.
 
       it "has the short_code for id 1001" do
-        short_url.update_column(:id, 1001)
-        expect(short_url.short_code).to eq("g9")
+        short_url.update(id: 1001)
+        short_url_2.save
+        expect(short_url_2.short_code.length).to eq(2)
       end
 
       it "has the short_code for id for 50" do
-        short_url.update_column(:id, 50)
-        expect(short_url.short_code).to eq("O")
+        short_url.update(id: 50)
+        short_url_3.save 
+        expect(short_url_3.short_code.length).to eq(1)
       end
     end
 
