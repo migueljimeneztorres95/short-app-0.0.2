@@ -29,7 +29,3 @@
 # Checking your short URL redirect
 
     curl -I localhost:3000/abc
-
-# Short code generator algorithm
-
-    This algorithm use the length of the last id used (default 1) and make a division of that number by 2 rounding up, using the result as max on SecureRandom.uuid, getting a random number with that number of digits, securing not get a short code duplicated
